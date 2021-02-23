@@ -2,6 +2,7 @@ package com.dqrapps.global;
 
 import com.sun.j3d.utils.geometry.Sphere;
 import com.sun.j3d.utils.image.TextureLoader;
+import com.sun.j3d.utils.universe.SimpleUniverse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import javax.media.j3d.*;
 import javax.vecmath.Vector3d;
 import javax.vecmath.Vector3f;
 import javax.xml.crypto.dsig.Transform;
+import java.awt.*;
 import java.util.Map;
 
 @SpringBootApplication
@@ -28,13 +30,30 @@ public class GlobalApplication implements CommandLineRunner {
     @Autowired
     ApplicationContext applicationContext;
 
+    private SimpleUniverse universe = null;
+    private Canvas3D canvas = null;
+    private TransformGroup viewTrans = null;
+
+    // https://www.youtube.com/watch?v=bAA6NRW3D4s&feature=emb_rel_pause
     @Override
     public void run(String... args) {
 //        Map<String, Object> beansOfType = applicationContext.getBeansOfType(Object.class);
 //        beansOfType.forEach((s, o) -> {
 //            logger.info("{} - {}", s, o.getClass());
 //        });
-        createTexturedSpheres();
+        GraphicsConfiguration config = SimpleUniverse.getPreferredConfiguration();
+
+        canvas = new Canvas3D(config);
+        add("Center", canvas);
+        universe = new SimpleUniverse(canvas);
+
+        Background bg = new Background(bgTexture.getImage());
+        bg.setApplicationBounds(bounds);
+        objRoot.addChild(bg);
+
+        objRoot.addChild(createGround());
+        objRoot.addChild(createWindFarm());
+        objRoot.addChild(createTexturedSpheres());
     }
 
     public BranchGroup createTexturedSpheres() {
