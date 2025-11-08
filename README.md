@@ -122,8 +122,8 @@ When the application starts:
 ### Common Issues
 
 1. **Texture Not Loading**:
-   - Check that SilverGlobe2.jpg exists in `src/main/resources/`
-   - Application falls back to SilverGlobe.jpg automatically
+   - Check that files <planets>.jpg exists in `src/main/resources/`
+   - Application falls back to earth.jpg automatically
    - Will use solid colors if no textures available
 
 2. **Performance Issues**:
