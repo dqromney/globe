@@ -1,6 +1,6 @@
 # Enhanced Globe 3D Visualization Application
 
-![Screenshot 2025-11-08 005052.png](src/main/resources/Screenshot%202025-11-08%20005052.png)
+![Screenshot 2025-11-08 010937.png](src/main/resources/Screenshot%202025-11-08%20010937.png)
 
 A sophisticated Spring Boot application that displays an interactive 3D visualization of planets with orbiting satellites, featuring real textures, multiple planet types, and interactive controls.
 
